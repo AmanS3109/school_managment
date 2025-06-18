@@ -19,5 +19,5 @@ A RESTful API built using **Node.js**, **Express**, and **MySQL** to manage scho
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/school-api.git
-cd school-api
+git clone https://github.com/your-username/school_management.git
+cd school_management
