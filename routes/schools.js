@@ -26,8 +26,8 @@ router.post(
       );
       res.status(201).json({ id: result.insertId, name, address, latitude, longitude });
     } catch (err) {
-      console.error(err);
-      res.status(500).json({ error: 'Database error' });
+      console.error('Add School error:', err.message);
+      res.status(500).json({ error: err.message });
     }
   }
 );
