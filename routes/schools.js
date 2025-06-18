@@ -49,15 +49,15 @@ router.get(
 
     // Haversine formula to calculate distance in kilometers
     const sql = `
-      SELECT id, name, address, latitude, longitude,
-        (6371 * ACOS(
-        COS(RADIANS(?)) * COS(RADIANS(latitude)) *
-        COS(RADIANS(?) - RADIANS(longitude)) +
-        SIN(RADIANS(?)) * SIN(RADIANS(latitude))
-      )) AS distance_km
-      FROM schools
-      ORDER BY distance_km ASC;
-      `;
+SELECT id, name, address, latitude, longitude,
+  (6371 * ACOS(
+    COS(RADIANS(?)) * COS(RADIANS(latitude)) *
+    COS(RADIANS(longitude) - RADIANS(?)) +
+    SIN(RADIANS(?)) * SIN(RADIANS(latitude))
+  )) AS distance_km
+FROM schools
+ORDER BY distance_km ASC;
+`;
 
     try {
       const [rows] = await pool.execute(sql, [userLat, userLon, userLat]);
