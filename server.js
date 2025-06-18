@@ -6,6 +6,16 @@ const schoolRoutes = require('./routes/schools');
 const app = express();
 app.use(express.json());
 
+app.get('/env-check', (req, res) => {
+  res.json({
+    dbHost: !!process.env.DB_HOST,
+    dbUser: !!process.env.DB_USER,
+    dbPass: !!process.env.DB_PASS,
+    dbName: !!process.env.DB_NAME,
+    dbPort: !!process.env.DB_PORT
+  });
+});
+
 // Mount routes
 app.use('/api', schoolRoutes);
 
